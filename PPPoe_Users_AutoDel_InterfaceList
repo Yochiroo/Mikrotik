@@ -1,0 +1,10 @@
+#In the "on Down:" script line into the PPP Profile the user is connecting to
+# The following code will remove the interface from the list OGE, automatically when disconnected.
+
+:delay 2s
+/interface/list/member
+:foreach rmif in=[find where interface~"*F00"] do= {
+/interface/list/member set $rmif comment="ByeBye";
+:log warning "Deleting disconnected interface from interface Lists";
+/interface/list/member remove [find where comment="ByeBye"];
+}
