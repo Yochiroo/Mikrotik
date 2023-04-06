@@ -7,3 +7,4 @@
 /tool e-mail send to="h.fornet@tims.fr" subject="Connexion PPPoE" body="L'utilisateur $userocname vient de se connecter sur le réseau PPPoE, son IP est $userocip";
 :log info "L'utilisateur $useroc vient de se connecter sur le réseau PPPoE OC";
 }
+
