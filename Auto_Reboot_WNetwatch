@@ -1,0 +1,14 @@
+# Add a netwatch to check if the LTE Access is down. Checking with 8.8.8.8
+/tool netwatch
+add comment=Reset_LTE_SI_4GDOWN_15MINUTES down-script="log info \"Perte du ping vers 8.8.8.8 - Demarrage du compte a rebours de 15 minutes avant reboot\" ; /system script run RebootLTE;" host=8.8.8.8 timeout=10s up-script=\
+    "log info \"Ping 8.8.8.8 OK\""
+
+# Reboot my LTE interface if it is down for 15 minutes (180*5 seconds)
+/system script
+add dont-require-permissions=yes name=RebootLTE owner=admin policy=ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon source=\
+    ":if ([/ping 8.8.8.8 interval=5 count=180] =0) do={\r\
+    \n:log error \"LTE DOWN\";\r\
+    \n/interface/lte/disable 0\r\
+    \n/delay 1s\r\
+    \n/interface/lte/enable 0\r\
+    \n}"
