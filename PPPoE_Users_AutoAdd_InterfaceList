@@ -1,0 +1,13 @@
+#In the "On Up:" script line into the PPP Profile the user is connecting to
+# where OGE is a variable, depending of the customer.
+:delay 2s;
+/ppp/active
+:foreach userogec in=[find where name~"@tims.oge"] do={
+:set $userogec [/ppp/active get $userogec name];
+:do {
+   /interface/list/member/add list=OGE interface=("<pppoe-$userogec>") 
+  :log warning "L'interface $userogec vient de se connecter, ajout à la liste d'interface";
+}  on-error={
+  :log info "$userogec est déjà ajouté sur la liste d'interface, ignoré ";
+}
+}
