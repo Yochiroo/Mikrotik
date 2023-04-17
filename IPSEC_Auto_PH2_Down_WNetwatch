@@ -1,5 +1,5 @@
 /tool netwatch
-add comment="SIEGE ORANGE" down-script="[/ip ipsec peer set [find where name=\"SERPRFW01 - SIEGE via ORANGE\"] disabled=yes]\r\
-    \n[/ip ipsec peer set [find where name=\"SERPRFW01- SIEGE via SFR\"] disabled=no]" host=90.63.254.136 up-script=\
-    "[/ip ipsec peer set [find where name=\"SERPRFW01 - SIEGE via ORANGE\"] disabled=no]\r\
-    \n[/ip ipsec peer set [find where name=\"SERPRFW01- SIEGE via SFR\"] disabled=yes]
+add comment="SIEGE ORANGE" down-script="[/ip ipsec peer set [find where name=\"SIEGE via ORANGE\"] disabled=yes]\r\
+    \n[/ip ipsec peer set [find where name=\"SIEGE via SFR\"] disabled=no]" host=91.34.56.11 up-script=\
+    "[/ip ipsec peer set [find where name=\"SIEGE via ORANGE\"] disabled=no]\r\
+    \n[/ip ipsec peer set [find where name=\"SIEGE via SFR\"] disabled=yes]
