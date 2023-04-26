@@ -1,4 +1,4 @@
-#This code is used to send an email when a user connects to the PPPoE network.
+#This code is used to send an email when a user connects to the PPPoE network for the first time
 :delay 2s
 /ppp/active
 :foreach useroc in=[find where name~"@tims.oc" and uptime<1m] do={
