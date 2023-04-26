@@ -10,5 +10,3 @@ if ([/system/script/environment find where name="$userocname"]=0) do={
 } else={
     :log info "L'utilisateur $userocname vient de reconnecter sur le réseau PPPoE OC";
 }
-
-# set global variable
