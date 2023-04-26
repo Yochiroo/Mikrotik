@@ -1,10 +1,14 @@
 #This code is used to send an email when a user connects to the PPPoE network.
 :delay 2s
 /ppp/active
-:foreach useroc in=[find where name~"@tims.oc" and uptime<5m] do={
+:foreach useroc in=[find where name~"@tims.oc" and uptime<1m] do={
 :set $userocname [/ppp/active get $useroc name];
 :set $userocip [/ppp/active get $useroc address];
+if ([/system/script/environment find where name="$userocname"]=0) do={
 /tool e-mail send to="h.fornet@tims.fr" subject="Connexion PPPoE" body="L'utilisateur $userocname vient de se connecter sur le réseau PPPoE, son IP est $userocip";
 :log info "L'utilisateur $useroc vient de se connecter sur le réseau PPPoE OC";
+} else={
+    :log info "L'utilisateur $userocname vient de reconnecter sur le réseau PPPoE OC";
 }
 
+# set global variable
