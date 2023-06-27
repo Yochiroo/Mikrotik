@@ -1,1 +1,11 @@
-Hi
+:delay 2s;
+/ip ipsec policy
+:foreach ph2nok in=[find where ph2-state!=established and comment!="pastouche"] do={
+:set $ph2nok [/ip ipsec policy get $ph2nok comment];
+:do {
+   :log error "$ph2nok est en erreur, reset en cours";
+   /ip ipsec policy set [find where comment=$ph2nok] disabled=yes;
+   :delay 2s;
+   /ip ipsec policy set [find where comment=$ph2nok] disabled=no
+}
+}
